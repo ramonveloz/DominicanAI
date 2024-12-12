@@ -43,6 +43,22 @@
             justify-content: space-between;
             gap: 50px;
 
+            .option{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                font-weight: 300;
+                font-size: 14px;
+                padding: 20px;
+                border: 1px solid #555;
+
+                img{
+                    width: 40px;
+                    height: 40px;
+                    object-fit: cover;
+                }
+            }
+
             
         }
     }

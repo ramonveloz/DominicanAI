@@ -9,16 +9,18 @@ const DashboardPage = () => {
                     <h1>Dominican AI</h1>
                 </div>
                 <div className="options">
-                    <img src="/chat.png"/>
-                    <span>Create a New Chat</span>
-                </div>
-                <div className="options">
-                    <img src="/image.png"/>
-                    <span>Analyze Images</span>
-                </div>
-                <div className="options">
-                    <img src="/code.png"/>
-                    <span>Help me with my code</span>
+                    <div className="option">
+                        <img src="/chat.png"/>
+                        <span>Create a New Chat</span>
+                    </div>
+                    <div className="option">
+                        <img src="/image.png"/>
+                        <span>Analyze Images</span>
+                    </div>
+                    <div className="option">
+                        <img src="/code.png"/>
+                        <span>Help me with my code</span>
+                    </div>
                 </div>
             </div>
             <div className="formContainer">
