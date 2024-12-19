@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import MediaSourceHandle from "../../lib/gemini";
 import Markdown from "react-markdown";
 import model from "../../lib/gemini";
-const NewPrompt = () => {
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+const NewPrompt = ({data}) => {
 
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
@@ -38,6 +39,36 @@ const NewPrompt = () => {
         useEffect(() => {
             endRef.current.scrollIntoView({ behavior: "smooth" });
         }, [question, answer, img.dbData]);
+
+        const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: (text) => {
+            return fetch(`${import.meta.env.VITE_API_URL}/api/chats/${data._id}`, {
+                method:"PUT",
+                credentials:"include",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify({ question: question.length ? question: undefined,
+                    answer,
+                    img: img.dbData?.filePath || undefined,
+                }),
+            }).then(res => res.json());
+        },
+        onSuccess: (id) => {
+          // Invalidate and refetch
+          queryClient.invalidateQueries({ queryKey: ["chat", data._id] }).then(() => {
+            setQuestion("");
+            setAnswer("");
+            setImg({
+                isLoading: false,
+                error:"",
+                dbData:{},
+                aiData:{},});
+          });
+        },
+      });
 
         const add = async (text) => {
             setQuestion(text)

@@ -4,9 +4,9 @@ import {useAuth} from "@clerk/clerk-react";
 import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const mutation = useMutation({
         mutationFn: (text) => {
